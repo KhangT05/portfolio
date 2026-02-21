@@ -4,7 +4,6 @@ import Layout from "./components/layout";
 import About from "./components/about/about";
 import Resume from "./components/resume";
 import Projects from "./components/projects";
-
 function App() {
   return (
     <>
