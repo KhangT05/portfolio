@@ -3,8 +3,8 @@ import Summary from './components/Summary'
 import Skills from './components/Skills'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
+import Projects from './components/Projects'
 import './index.css'
-import Projects from './components/projects'
 
 const Divider = () => <div className="divider" />
 
