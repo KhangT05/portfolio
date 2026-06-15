@@ -1,7 +1,1 @@
-Options -MultiViews
-RewriteEngine On
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-RewriteRule ^ index.html [L]
+"Options -MultiViewsRewriteEngine OnRewriteCond %{REQUEST_FILENAME} !-fRewriteCond %{REQUEST_FILENAME} !-dRewriteRule ^ index.html [QSA,L]" 
