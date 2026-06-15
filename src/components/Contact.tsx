@@ -5,7 +5,7 @@ import '../index.css'
 const links = [
   { href: `mailto:${profile.email}`, icon: 'ti-mail', label: profile.email },
   { href: profile.github, icon: 'ti-brand-github', label: 'GitHub' },
-  { href: profile.cvUrl, icon: 'ti-file-cv', label: 'Download CV', download: 'CV.pdf' },
+  { href: profile.cvUrl, icon: 'ti-file-cv', label: 'Download CV', download: 'TranNgocKhang_CV.pdf' },
 ]
 
 export default function Contact() {
@@ -13,9 +13,6 @@ export default function Contact() {
     <section id="contact" className="section">
       <div className="section__label">Contact</div>
       <h2 className="section__title">Get in touch</h2>
-      <p className="section__desc">
-        Open to senior/lead backend roles, system design consulting, and interesting problems.
-      </p>
       <div className="contact-chips">
         {links.map((l) => (
           <a key={l.label}

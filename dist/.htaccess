@@ -1,1 +1,0 @@
-"Options -MultiViewsRewriteEngine OnRewriteCond %{REQUEST_FILENAME} !-fRewriteCond %{REQUEST_FILENAME} !-dRewriteRule ^ index.html [QSA,L]" 

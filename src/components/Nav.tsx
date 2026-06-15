@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { profile } from '../data/portfolio'
 import '../index.css'
 
-const SECTIONS = ['about', 'skills', 'projects', 'experience', 'contact'] as const
+const SECTIONS = ['about', 'experience', 'projects', 'skills', 'contact'] as const;
 type Section = (typeof SECTIONS)[number]
 
 export default function Nav() {

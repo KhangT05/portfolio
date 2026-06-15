@@ -404,19 +404,13 @@ a {
   margin-bottom: 0;
 }
 
-.timeline__dot {
-  position: absolute;
-  left: -16px;
-  top: 5px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--color-border-hover);
+.timeline__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 2px;
 }
 
-.timeline__dot--current {
-  background: var(--color-accent);
-}
 
 .timeline__period {
   font-family: var(--font-mono);
@@ -426,18 +420,24 @@ a {
 }
 
 .timeline__role {
-  font-size: var(--fs-base);
-  font-weight: var(--fw-medium);
-  margin-bottom: 2px;
-}
-
-.timeline__company {
   font-size: var(--fs-sm);
   color: var(--color-text-secondary);
   margin-bottom: 6px;
 }
 
+.timeline__company {
+
+  font-size: var(--fs-base);
+  font-weight: var(--fw-medium);
+  margin-bottom: 2px;
+}
+
 .timeline__desc {
+  list-style: disc;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   font-size: var(--fs-sm);
   color: var(--color-text-secondary);
   line-height: 1.55;
@@ -450,4 +450,51 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.project-card__type {
+  font-weight: var(--fw-normal);
+  color: var(--color-text-secondary);
+}
+
+.project-card__period {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--color-text-tertiary);
+}
+
+.project-card__tag-plain {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+}
+
+.project-card__tag-plain+.project-card__tag-plain::before {
+  content: ' · ';
+}
+
+.project-card__highlights {
+  list-style: disc;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+
+.project-card__github {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+}
+
+.project-card__github a {
+  color: var(--color-text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.project-card__github a:hover {
+  color: var(--color-accent);
 }

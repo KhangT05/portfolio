@@ -15,11 +15,11 @@ export default function App() {
       <main className="page">
         <Summary />
         <Divider />
-        <Skills />
+        <Experience />
         <Divider />
         <Projects />
         <Divider />
-        <Experience />
+        <Skills />
         <Divider />
         <Contact />
       </main>
