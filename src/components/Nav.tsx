@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useRef, useState } from 'react'
 import { profile } from '../data/portfolio'
 import '../index.css'
@@ -25,7 +24,6 @@ export default function Nav() {
         ticking.current = false
       })
     }
-
     handler()
     window.addEventListener('scroll', handler, { passive: true })
     return () => window.removeEventListener('scroll', handler)
@@ -37,13 +35,12 @@ export default function Nav() {
 
   return (
     <nav className="nav">
-      <span className="brand">{profile.name}</span>
-      <div className="flex-1" />
+      <span className="nav__brand">{profile.name}</span>
       {SECTIONS.map((id) => (
         <button
           key={id}
           onClick={() => scrollTo(id)}
-          className={`link${active === id ? ' active' : ''}`}
+          className={`nav__link${active === id ? ' nav__link--active' : ''}`}
         >
           {id}
         </button>

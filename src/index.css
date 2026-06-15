@@ -1,65 +1,453 @@
-.nav {
-  --nav-height: 4rem;
-  --nav-bg: 255 255 255;
-  --nav-blur: 12px;
-  --nav-z: 50;
-  --nav-px: 1.5rem;
-  --nav-gap: 1.5rem;
-  --nav-font-size: 13px;
-  --nav-font-weight-brand: 500;
-  --nav-border: #e5e7eb;
-  --nav-text-active: #111827;
-  --nav-text-inactive: #6b7280;
-  --nav-transition: color 150ms ease;
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root {
+  --font-family: "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
 
+  --fs-xs: 11px;
+  --fs-sm: 13px;
+  --fs-base: 14px;
+  --fs-md: 15px;
+  --fs-lg: 20px;
+  --fs-hero: clamp(28px, 5vw, 36px);
+
+  --fw-normal: 400;
+  --fw-medium: 500;
+
+  --color-text: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-tertiary: #9ca3af;
+
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f9fafb;
+
+  --color-border: #e5e7eb;
+  --color-border-hover: #9ca3af;
+
+  --color-accent: #2563eb;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-section: 3.5rem;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 99px;
+
+  --border-default: 0.5px solid var(--color-border);
+  --border-hover: 0.5px solid var(--color-border-hover);
+
+  --transition: all 150ms ease;
+
+  --z-nav: 50;
+  --nav-height: 4rem;
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+h1,
+h2,
+h3 {
+  font-weight: var(--fw-medium);
+}
+
+button {
+  font-family: var(--font-family);
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: var(--nav-z);
+  inset: 0 0 auto 0;
+  z-index: var(--z-nav);
   height: var(--nav-height);
-  padding: 0 var(--nav-px);
-  gap: var(--nav-gap);
+  padding: 0 var(--space-6);
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--nav-border);
-  background-color: rgb(var(--nav-bg) / 0.8);
-  backdrop-filter: blur(var(--nav-blur));
-  -webkit-backdrop-filter: blur(var(--nav-blur));
-  isolation: isolate;
   justify-content: center;
-  gap: 3;
+  gap: var(--space-6);
+  border-bottom: var(--border-default);
+  background: rgb(255 255 255 / 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-.brand {
-  font-size: var(--nav-font-size);
-  font-weight: var(--nav-font-weight-brand);
-  color: var(--nav-text-active);
-  flex-shrink: 0;
-  left: var(--nav-px);
+.nav__brand {
+  position: absolute;
+  left: var(--space-6);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-text);
 }
 
-.link {
-  font-size: var(--nav-font-size);
-  color: var(--nav-text-inactive);
-  transition: var(--nav-transition);
+.nav__link {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-normal);
+  color: var(--color-text-secondary);
   text-transform: capitalize;
   background: none;
   border: none;
-  padding: 0 0.85rem;
-  cursor: pointer;
-  outline: none;
+  padding: 0 0.5rem;
   height: 100%;
   display: flex;
   align-items: center;
-  position: relative;
+  transition: color 150ms ease;
+  outline: none;
 }
 
-.link:focus-visible {
+.nav__link:hover {
+  color: var(--color-text);
+}
+
+.nav__link:focus-visible {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
 
-.link.active {
-  color: var(--nav-text-active);
+.nav__link--active {
+  color: var(--color-text);
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: calc(var(--nav-height) + 1.5rem) 1.25rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-section);
+}
+
+.divider {
+  height: 0.5px;
+  background: var(--color-border);
+  /* không có margin — gap trên .page quản lý spacing */
+}
+
+/* ============================================================
+   SECTION — pattern dùng lại cho mọi section
+   ============================================================ */
+.section {
+  /* không cần style, gap của .page đã đủ */
+}
+
+.section__label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-3);
+}
+
+.section__title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  color: var(--color-text);
+  margin-bottom: var(--space-5);
+}
+
+/* ============================================================
+   TAG / CHIP — dùng cho skill tags, project tags, hero stack
+   ============================================================ */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--color-text-secondary);
+  background: var(--color-bg-secondary);
+  border: var(--border-default);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.tag--pill {
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  padding: 3px 10px;
+}
+
+/* ============================================================
+   BUTTON
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-family);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-normal);
+  padding: 7px 16px;
+  border-radius: var(--radius-md);
+  border: none;
+  transition: var(--transition);
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+}
+
+.btn--primary:hover {
+  opacity: 0.88;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text);
+  border: var(--border-default);
+}
+
+.btn--ghost:hover {
+  border-color: var(--color-border-hover);
+}
+
+/* ============================================================
+   CARD — dùng cho project cards, skill categories
+   ============================================================ */
+.card {
+  background: var(--color-bg);
+  border: var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  transition: border-color 150ms ease;
+}
+
+.card:hover {
+  border-color: var(--color-border-hover);
+}
+
+/* ============================================================
+   LINK CHIP — contact chips
+   ============================================================ */
+.link-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  padding: 7px 14px;
+  border-radius: var(--radius-md);
+  border: var(--border-default);
+  background: none;
+  transition: var(--transition);
+}
+
+.link-chip:hover {
+  border-color: var(--color-border-hover);
+  color: var(--color-text);
+}
+
+/* ============================================================
+   SUMMARY SECTION
+   ============================================================ */
+.summary__hero {
+  font-size: var(--fs-hero);
+  font-weight: var(--fw-medium);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-2);
+}
+
+.summary__hero-accent {
+  color: var(--color-accent);
+}
+
+.summary__bio {
+  font-size: var(--fs-md);
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  max-width: 520px;
+  margin-bottom: var(--space-5);
+}
+
+.summary__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: var(--space-5);
+}
+
+.summary__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ============================================================
+   SKILLS SECTION
+   ============================================================ */
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.skill-card__label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-bottom: 8px;
+}
+
+.skill-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+/* ============================================================
+   PROJECTS SECTION
+   ============================================================ */
+.projects__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.project-card__name {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-medium);
+}
+
+.project-card__link {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 150ms ease;
+}
+
+.project-card__link:hover {
+  color: var(--color-accent);
+}
+
+.project-card__desc {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+
+.project-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ============================================================
+   EXPERIENCE SECTION
+   ============================================================ */
+.timeline {
+  position: relative;
+  padding-left: 20px;
+}
+
+.timeline__line {
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  bottom: 6px;
+  width: 0.5px;
+  background: var(--color-border);
+}
+
+.timeline__item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline__item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline__dot {
+  position: absolute;
+  left: -16px;
+  top: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-border-hover);
+}
+
+.timeline__dot--current {
+  background: var(--color-accent);
+}
+
+.timeline__period {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--color-text-tertiary);
+  margin-bottom: 4px;
+}
+
+.timeline__role {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-medium);
+  margin-bottom: 2px;
+}
+
+.timeline__company {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: 6px;
+}
+
+.timeline__desc {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+}
+
+/* ============================================================
+   CONTACT SECTION
+   ============================================================ */
+.contact__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
