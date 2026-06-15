@@ -4,7 +4,7 @@ import Skills from './components/Skills'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
 import './index.css'
-import Projects from './components/Projects'
+import Projects from './components/projects'
 
 const Divider = () => <div className="divider" />
 
