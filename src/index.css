@@ -1,178 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap');
+.nav {
+  --nav-height: 4rem;
+  --nav-bg: 255 255 255;
+  --nav-blur: 12px;
+  --nav-z: 50;
+  --nav-px: 1.5rem;
+  --nav-gap: 1.5rem;
+  --nav-font-size: 13px;
+  --nav-font-weight-brand: 500;
+  --nav-border: #e5e7eb;
+  --nav-text-active: #111827;
+  --nav-text-inactive: #6b7280;
+  --nav-transition: color 150ms ease;
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --bg: #0a0a0a;
-  --surface: #111111;
-  --surface2: #1a1a1a;
-  --border: #222222;
-  --accent: #c8f135;
-  --accent2: #ff6b35;
-  --text: #f0f0f0;
-  --text-muted: #666666;
-  --text-dim: #333333;
-  --font-display: 'Syne', sans-serif;
-  --font-mono: 'DM Mono', monospace;
-  --font-serif: 'Instrument Serif', serif;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-display);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-.app {
-  min-height: 100vh;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-family: inherit;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 2px;
-}
-
-/* Noise overlay */
-body::before {
-  content: '';
   position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.4;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--nav-z);
+  height: var(--nav-height);
+  padding: 0 var(--nav-px);
+  gap: var(--nav-gap);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--nav-border);
+  background-color: rgb(var(--nav-bg) / 0.8);
+  backdrop-filter: blur(var(--nav-blur));
+  -webkit-backdrop-filter: blur(var(--nav-blur));
+  isolation: isolate;
+  justify-content: center;
+  gap: 3;
 }
 
-/* Page wrapper */
-.page {
-  min-height: 100vh;
-  padding: 120px 0 80px;
+.brand {
+  font-size: var(--nav-font-size);
+  font-weight: var(--nav-font-weight-brand);
+  color: var(--nav-text-active);
+  flex-shrink: 0;
+  left: var(--nav-px);
 }
 
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 40px;
+.link {
+  font-size: var(--nav-font-size);
+  color: var(--nav-text-inactive);
+  transition: var(--nav-transition);
+  text-transform: capitalize;
+  background: none;
+  border: none;
+  padding: 0 0.85rem;
+  cursor: pointer;
+  outline: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
-/* Section label */
-.section-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 16px;
+.link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
-/* Divider */
-.divider {
-  height: 1px;
-  background: var(--border);
-  margin: 60px 0;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideRight {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.animate-fadeUp {
-  animation: fadeUp 0.7s ease forwards;
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.7s ease forwards;
-}
-
-.delay-1 {
-  animation-delay: 0.1s;
-  opacity: 0;
-}
-
-.delay-2 {
-  animation-delay: 0.2s;
-  opacity: 0;
-}
-
-.delay-3 {
-  animation-delay: 0.3s;
-  opacity: 0;
-}
-
-.delay-4 {
-  animation-delay: 0.4s;
-  opacity: 0;
-}
-
-.delay-5 {
-  animation-delay: 0.5s;
-  opacity: 0;
-}
-
-.delay-6 {
-  animation-delay: 0.6s;
-  opacity: 0;
+.link.active {
+  color: var(--nav-text-active);
 }

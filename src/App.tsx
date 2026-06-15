@@ -1,27 +1,27 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import Home from './pages/Home'
-import About from './pages/About'
-import Projects from './pages/Projects'
-import Skills from './pages/Skills'
-import Contact from './pages/Contact'
-import './index.css'
+import Nav from './components/Nav'
+import Summary from './components/Summary'
+import Skills from './components/Skills'
+import Experience from './components/Experience'
+import Contact from './components/Contact'
+import Projects from './components/projects'
 
-function App() {
+const Divider = () => (
+  <div style={{ height: '0.5px', background: 'var(--border)', marginBottom: '3.5rem' }} />
+)
+
+export default function App() {
   return (
-    <BrowserRouter>
-      <div className="app">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <div style={{ maxWidth: 720, margin: '0 auto', padding: '5.5rem 1.25rem 4rem' }}>
+      <Nav />
+      <Summary />
+      <Divider />
+      <Skills />
+      <Divider />
+      <Projects />
+      <Divider />
+      <Experience />
+      <Divider />
+      <Contact />
+    </div>
   )
 }
-
-export default App
